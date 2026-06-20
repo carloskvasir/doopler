@@ -1,0 +1,29 @@
+<div id="post_clock_<%= post.id %>"
+     class="mt-4 flex items-center justify-between border-t border-gray-800 pt-3">
+  <div class="flex items-center gap-2 text-xs"
+       data-controller="countdown"
+       data-countdown-expires-at-value="<%= post.expires_at.iso8601 %>">
+    <% if post.active? %>
+      <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+      <span class="text-gray-400">Active signal:</span>
+      <span class="font-mono text-green-400" data-countdown-target="display">
+        <%= distance_of_time_in_words(Time.current, post.expires_at) %>
+      </span>
+    <% else %>
+      <span class="w-2 h-2 rounded-full bg-gray-600"></span>
+      <span class="text-gray-600">Signal expired</span>
+    <% end %>
+  </div>
+
+  <div class="flex items-center gap-3">
+    <span class="text-xs text-gray-500"><%= post.likes.size %> amplifications</span>
+    <% if post.active? %>
+      <%= form_with url: post_likes_path(post), method: :post, data: { turbo_stream: true } do %>
+        <button type="submit"
+                class="px-3 py-1 rounded-md bg-gray-800 hover:bg-indigo-700 text-xs text-gray-300 hover:text-white transition font-medium">
+          📡 +1h
+        </button>
+      <% end %>
+    <% end %>
+  </div>
+</div>

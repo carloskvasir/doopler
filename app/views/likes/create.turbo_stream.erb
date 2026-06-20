@@ -1,0 +1,3 @@
+<%= turbo_stream.replace "post_clock_#{@post.id}" do %>
+  <%= render "posts/post_clock", post: @post.reload %>
+<% end %>

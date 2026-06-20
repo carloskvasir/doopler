@@ -1,0 +1,29 @@
+<% content_for :title, "New Signal — Doopler" %>
+
+<div class="max-w-xl mx-auto">
+  <h1 class="text-xl font-semibold text-gray-200 mb-6">Broadcast a new signal</h1>
+
+  <%= form_with model: @post, class: "space-y-4" do |f| %>
+    <% if @post.errors.any? %>
+      <div class="bg-red-900/50 border border-red-700 rounded-lg p-3 text-sm text-red-200">
+        <% @post.errors.full_messages.each do |msg| %>
+          <p><%= msg %></p>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div>
+      <%= f.text_area :content,
+            rows: 4,
+            placeholder: "What do you want to broadcast? (disappears in 2h)",
+            class: "w-full bg-gray-900 border border-gray-700 rounded-lg px-4 py-3 text-gray-100 placeholder-gray-500 focus:outline-none focus:border-indigo-500 resize-none",
+            maxlength: 280 %>
+    </div>
+
+    <div class="flex items-center justify-between">
+      <%= link_to "Cancel", root_path, class: "text-gray-500 hover:text-gray-300 text-sm" %>
+      <%= f.submit "Broadcast signal →",
+            class: "px-5 py-2 bg-indigo-600 hover:bg-indigo-500 rounded-lg text-white font-medium text-sm transition cursor-pointer" %>
+    </div>
+  <% end %>
+</div>
