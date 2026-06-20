@@ -1,4 +1,4 @@
-FROM ruby:4.0.5
+FROM docker.io/library/ruby:4.0.5
 
 RUN apt-get update -qq && \
     apt-get install --no-install-recommends -y \
