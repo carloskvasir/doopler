@@ -18,7 +18,7 @@
     <%= javascript_importmap_tags %>
   </head>
 
-  <body class="bg-gray-950 text-gray-100 min-h-screen">
+  <body class="bg-gray-950 text-gray-100 min-h-screen flex flex-col">
     <nav class="fixed top-0 inset-x-0 z-50 bg-gray-900/80 backdrop-blur border-b border-gray-800">
       <div class="max-w-2xl mx-auto px-4 h-14 flex items-center justify-between">
         <%= link_to "⬤ Doopler", root_path, class: "text-indigo-400 font-bold text-lg tracking-tight" %>
@@ -46,12 +46,13 @@
       </div>
     <% end %>
 
-    <main class="max-w-2xl mx-auto px-4 pt-20 pb-12">
+    <main class="flex-1 max-w-2xl w-full mx-auto px-4 pt-20 pb-12">
       <%= yield %>
     </main>
 
     <footer class="border-t border-gray-900 py-4 text-center text-xs text-gray-700">
-      Doopler v<%= Doopler::VERSION %> &mdash; Capstone Thesis 2026
+      Doopler v<%= Doopler::VERSION %> &mdash;
+      <a href="https://linkedin.com/in/carloskvasir" target="_blank" rel="noopener noreferrer" class="hover:text-gray-400 transition">linkedin.com/in/carloskvasir</a>
     </footer>
   </body>
 </html>
