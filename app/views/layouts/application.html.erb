@@ -10,21 +10,48 @@
 
     <%= yield :head %>
 
-    <%# Enable PWA manifest for installable apps (make sure to enable in config/routes.rb too!) %>
-    <%#= tag.link rel: "manifest", href: pwa_manifest_path(format: :json) %>
-
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
 
-    <%# Includes all stylesheet files in app/assets/stylesheets %>
     <%= stylesheet_link_tag :app, "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
   </head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
+  <body class="bg-gray-950 text-gray-100 min-h-screen">
+    <nav class="fixed top-0 inset-x-0 z-50 bg-gray-900/80 backdrop-blur border-b border-gray-800">
+      <div class="max-w-2xl mx-auto px-4 h-14 flex items-center justify-between">
+        <%= link_to "⬤ Doopler", root_path, class: "text-indigo-400 font-bold text-lg tracking-tight" %>
+        <div class="flex items-center gap-3 text-sm">
+          <% if user_signed_in? %>
+            <%= link_to "+ Broadcast", new_post_path, class: "px-3 py-1.5 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition" %>
+            <span class="text-gray-400"><%= current_user.email.split("@").first %></span>
+            <%= button_to "Sign out", destroy_user_session_path, method: :delete, class: "text-gray-500 hover:text-gray-300 transition bg-transparent border-0 cursor-pointer" %>
+          <% else %>
+            <%= link_to "Sign in", new_user_session_path, class: "text-gray-300 hover:text-white transition" %>
+            <%= link_to "Sign up", new_user_registration_path, class: "px-3 py-1.5 rounded-md bg-indigo-600 hover:bg-indigo-500 text-white font-medium transition" %>
+          <% end %>
+        </div>
+      </div>
+    </nav>
+
+    <% if notice.present? %>
+      <div id="flash_notice" class="fixed top-16 inset-x-0 z-40 flex justify-center px-4 pt-2">
+        <p class="bg-green-800 text-green-100 px-4 py-2 rounded-md text-sm shadow"><%= notice %></p>
+      </div>
+    <% end %>
+    <% if alert.present? %>
+      <div id="flash_alert" class="fixed top-16 inset-x-0 z-40 flex justify-center px-4 pt-2">
+        <p class="bg-red-900 text-red-100 px-4 py-2 rounded-md text-sm shadow"><%= alert %></p>
+      </div>
+    <% end %>
+
+    <main class="max-w-2xl mx-auto px-4 pt-20 pb-12">
       <%= yield %>
     </main>
+
+    <footer class="border-t border-gray-900 py-4 text-center text-xs text-gray-700">
+      Doopler v<%= Doopler::VERSION %> &mdash; Capstone Thesis 2026
+    </footer>
   </body>
 </html>

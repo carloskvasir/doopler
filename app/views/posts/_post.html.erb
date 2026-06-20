@@ -1,0 +1,30 @@
+<% visible = post.active? || current_user&.premium? || current_user == post.user %>
+
+<div id="post_<%= post.id %>" class="relative rounded-xl border border-gray-800 bg-gray-900 p-5 overflow-hidden">
+  <div class="flex items-center gap-2 mb-3">
+    <span class="w-7 h-7 rounded-full bg-indigo-700 flex items-center justify-center text-xs font-bold text-white">
+      <%= post.user.email[0].upcase %>
+    </span>
+    <span class="text-sm text-gray-400"><%= post.user.email.split("@").first %></span>
+    <span class="text-xs text-gray-600 ml-auto"><%= time_ago_in_words(post.created_at) %> ago</span>
+  </div>
+
+  <div class="<%= "blur-md opacity-40 select-none pointer-events-none" unless visible %>">
+    <p class="text-gray-100 leading-relaxed whitespace-pre-wrap"><%= post.content %></p>
+  </div>
+
+  <% unless visible %>
+    <div class="absolute inset-0 flex flex-col items-center justify-center bg-gray-950/60 backdrop-blur-sm rounded-xl">
+      <p class="text-gray-400 text-sm mb-3">📡 Signal lost — frequency zeroed.</p>
+      <a href="https://linkedin.com/in/carloskvasir"
+         target="_blank"
+         rel="noopener noreferrer"
+         class="px-4 py-2 rounded-lg bg-indigo-600 hover:bg-indigo-500 text-white text-sm font-medium transition">
+        Request Premium access from Carlos Kvasir on LinkedIn
+      </a>
+    </div>
+  <% end %>
+
+  <%= turbo_stream_from "post_clock_#{post.id}" %>
+  <%= render "posts/post_clock", post: post %>
+</div>
