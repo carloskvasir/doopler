@@ -9,6 +9,8 @@ Versions follow [Semantic Versioning](https://semver.org/).
 
 ### Changed
 
+- Dependencies updated (Rails 8.1.4.1 and the other pending Dependabot bumps)
+- Dependabot runs weekly with grouped minor/patch updates; non-major PRs auto-merge once required checks pass
 - Admin seed password now comes from `ADMIN_PASSWORD` (required in production; random and printed once elsewhere) instead of a hardcoded value
 - Devcontainer runs `bin/rails db:setup`
 - `.gitignore` also covers local SQLite files, editor state and coverage
