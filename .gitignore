@@ -35,3 +35,17 @@
 
 /app/assets/builds/*
 !/app/assets/builds/.keep
+
+# Ignore local database files wherever they live.
+*.sqlite3
+*.sqlite3-*
+
+# Ignore editor and tooling state.
+/.vscode/
+/.idea/
+/.ruby-lsp/
+.DS_Store
+
+# Ignore test coverage and local overrides.
+/coverage/
+mise.local.toml

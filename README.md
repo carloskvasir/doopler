@@ -44,7 +44,7 @@ Open **http://localhost:3000**.
 
 | Role | Email | Password |
 |---|---|---|
-| Admin | `admin@doopler.local` | `doopler123` |
+| Admin | `admin@doopler.local` | `ADMIN_PASSWORD` env var (random, printed by `db:seed`, when unset) |
 
 Admin panel: **http://localhost:3000/admin**
 

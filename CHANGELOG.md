@@ -7,6 +7,12 @@ Versions follow [Semantic Versioning](https://semver.org/).
 
 ## [Unreleased]
 
+### Changed
+
+- Admin seed password now comes from `ADMIN_PASSWORD` (required in production; random and printed once elsewhere) instead of a hardcoded value
+- Devcontainer runs `bin/rails db:setup`
+- `.gitignore` also covers local SQLite files, editor state and coverage
+
 ## [0.1.0] — 2026-06-20
 
 ### Added

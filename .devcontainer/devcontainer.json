@@ -8,7 +8,7 @@
   "forwardPorts": [
     3000
   ],
-  "postCreateCommand": "bundle install && rails db:setup",
+  "postCreateCommand": "bundle install && bin/rails db:setup",
   "mounts": [
     "source=/dev/null,target=/workspace/.env,type=bind,readonly"
   ],
@@ -17,8 +17,6 @@
     "vscode": {
       "extensions": [
         "Shopify.ruby-lsp",
-        "rebornix.Ruby",
-        "misogi.ruby-rubocop",
         "bradlc.vscode-tailwindcss"
       ],
       "settings": {
